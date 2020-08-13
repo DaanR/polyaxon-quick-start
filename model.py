@@ -34,6 +34,7 @@ OPTIMIZERS = {
     'sgd': optimizers.SGD,
 }
 
+print("hi")
 
 def create_model(
     conv1_size,
