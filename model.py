@@ -35,6 +35,9 @@ OPTIMIZERS = {
 }
 
 print("hi")
+from PIL import Image
+# Open the image form working directory
+image = Image.open('data/test.jpg')
 
 def create_model(
     conv1_size,
