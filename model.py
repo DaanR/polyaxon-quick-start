@@ -39,7 +39,7 @@ import numpy as np
 from matplotlib import image
 from matplotlib import pyplot
 # load image as pixel array
-image = image.imread('test.jpg')
+image = image.imread('data/test.jpg')
 # summarize shape of the pixel array
 print(image.dtype)
 print(image.shape)
