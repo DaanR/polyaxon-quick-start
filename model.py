@@ -36,8 +36,14 @@ OPTIMIZERS = {
 
 print("hi")
 from PIL import Image
+import numpy as np
 # Open the image form working directory
 image = Image.open('data/test.jpg')
+print(image.format)
+print(image.size)
+print(image.mode)
+# show the image
+load_image.show()
 
 def create_model(
     conv1_size,
