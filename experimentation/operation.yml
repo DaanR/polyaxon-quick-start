@@ -3,4 +3,5 @@ kind: operation
 params:
   optimizer: {value: sgd}
   epochs: {value: 1}
+  some-file-names: {value: {files: ["test.jpg", "/data/"]}}
 urlRef: https://raw.githubusercontent.com/polyaxon/polyaxon-quick-start/master/experimentation/typed.yml
