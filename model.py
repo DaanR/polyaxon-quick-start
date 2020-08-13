@@ -35,15 +35,17 @@ OPTIMIZERS = {
 }
 
 print("hi")
-from PIL import Image
 import numpy as np
-# Open the image form working directory
-image = Image.open('data/test.jpg')
-print(image.format)
-print(image.size)
-print(image.mode)
-# show the image
-load_image.show()
+from matplotlib import image
+from matplotlib import pyplot
+# load image as pixel array
+image = image.imread('test.jpg')
+# summarize shape of the pixel array
+print(image.dtype)
+print(image.shape)
+# display the array of pixels as an image
+pyplot.imshow(image)
+pyplot.show()
 
 def create_model(
     conv1_size,
