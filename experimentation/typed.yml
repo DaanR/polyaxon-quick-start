@@ -23,7 +23,7 @@ outputs:
 run:
   kind: job
   init:
-  - git: {url: "https://github.com/polyaxon/polyaxon-quick-start"}
+  - git: {url: "https://github.com/DaanR/polyaxon-quick-start"}
   container:
     image: polyaxon/polyaxon-quick-start
     workingDir: "{{ globals.artifacts_path }}/polyaxon-quick-start"
