@@ -26,7 +26,8 @@ from tensorflow.keras import optimizers
 
 from polyaxon import tracking
 from polyaxon.tracking.contrib.keras import PolyaxonKerasCallback, PolyaxonKerasModelCheckpoint
-
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
 
 OPTIMIZERS = {
     'adam': optimizers.Adam,
@@ -42,9 +43,19 @@ image = image.imread('kaggle_bee_vs_wasp/bee1/1240800_e5f2b40032_n.jpg')
 # summarize shape of the pixel array
 print(image.dtype)
 print(image.shape)
-# display the array of pixels as an image
-pyplot.imshow(image)
-pyplot.show()
+
+photos, labels = list(), list()
+# enumerate files in the directory
+for file in listdir('kaggle_bee_vs_wasp/bee1/'):
+	# determine class
+=	output = 1.0
+	# load image
+	photo = load_img(folder + file, target_size=(200, 200))
+	# convert to numpy array
+	photo = img_to_array(photo)
+	# store
+	photos.append(photo)
+	labels.append(output)
 
 def create_model(
     conv1_size,
