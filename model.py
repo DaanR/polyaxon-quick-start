@@ -56,6 +56,7 @@ for file in listdir('kaggle_bee_vs_wasp/bee1/'):
 	# store
 	photos.append(photo)
 	labels.append(output)
+print(photos.shape)
 
 def create_model(
     conv1_size,
