@@ -59,7 +59,11 @@ for file in listdir(folder):
 	# store
 	photos.append(photo)
 	labels.append(output)
-print(photos.shape)
+# convert to a numpy arrays
+photos = asarray(photos)
+labels = asarray(labels)
+print(photos.shape, labels.shape)
+
 
 def create_model(
     conv1_size,
