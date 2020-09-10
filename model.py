@@ -47,8 +47,9 @@ print(image.dtype)
 print(image.shape)
 
 photos, labels = list(), list()
+folder = 'kaggle_bee_vs_wasp/bee1/'
 # enumerate files in the directory
-for file in listdir('kaggle_bee_vs_wasp/bee1/'):
+for file in listdir(folder):
 	# determine class
 	output = 1.0
 	# load image
