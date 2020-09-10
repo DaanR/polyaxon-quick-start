@@ -31,15 +31,17 @@ from polyaxon.tracking.contrib.keras import PolyaxonKerasCallback, PolyaxonKeras
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
 
+import numpy as np
+from matplotlib import image
+from matplotlib import pyplot
+
 OPTIMIZERS = {
     'adam': optimizers.Adam,
     'rmsprop': optimizers.RMSprop,
     'sgd': optimizers.SGD,
 }
 
-import numpy as np
-from matplotlib import image
-from matplotlib import pyplot
+
 # load image as pixel array
 image = image.imread('kaggle_bee_vs_wasp/bee1/1240800_e5f2b40032_n.jpg')
 # summarize shape of the pixel array
@@ -60,8 +62,8 @@ for file in listdir(folder):
 	photos.append(photo)
 	labels.append(output)
 # convert to a numpy arrays
-photos = asarray(photos)
-labels = asarray(labels)
+photos = np.asarray(photos)
+labels = np.asarray(labels)
 print(photos.shape, labels.shape)
 
 
