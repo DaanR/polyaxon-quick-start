@@ -48,7 +48,7 @@ photos, labels = list(), list()
 # enumerate files in the directory
 for file in listdir('kaggle_bee_vs_wasp/bee1/'):
 	# determine class
-=	output = 1.0
+	output = 1.0
 	# load image
 	photo = load_img(folder + file, target_size=(200, 200))
 	# convert to numpy array
