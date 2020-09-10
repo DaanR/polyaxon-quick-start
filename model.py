@@ -34,12 +34,11 @@ OPTIMIZERS = {
     'sgd': optimizers.SGD,
 }
 
-print("hi")
 import numpy as np
 from matplotlib import image
 from matplotlib import pyplot
 # load image as pixel array
-image = image.imread('data/test.jpg')
+image = image.imread('kaggle_bee_vs_wasp/bee1/1240800_e5f2b40032_n.jpg')
 # summarize shape of the pixel array
 print(image.dtype)
 print(image.shape)

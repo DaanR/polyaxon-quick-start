@@ -3,5 +3,5 @@ kind: operation
 params:
   optimizer: {value: sgd}
   epochs: {value: 1}
-  some-file-names: {value: {files: ["test.jpg", "/data/"]}}
+  dataset1: {value: {dirs["/data/kaggle_bee_vs_wasp/bee1/", init: True}}
 pathRef: "typed.yml"
