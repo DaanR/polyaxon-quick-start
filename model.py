@@ -186,5 +186,4 @@ if __name__ == '__main__':
     model.fit(x=photos,
               y=labels,
               epochs=args.epochs,
-              validation_data=(X_test, y_test),
               callbacks=[tensorboard_callback, plx_callback, plx_model_callback])
