@@ -21,7 +21,6 @@ import tensorflow as tf
 
 # load dogs vs cats dataset, reshape and save to a new file
 from os import listdir
-from keras.datasets import fashion_mnist
 from tensorflow.keras.layers import Dense, Flatten, Conv2D, Dense, Dropout, Activation, MaxPooling2D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras import optimizers
@@ -180,7 +179,7 @@ if __name__ == '__main__':
         optimizer=args.optimizer,
         learning_rate=args.learning_rate,
         loss=args.loss,
-        num_classes=y_test.shape[1]
+        num_classes=2
     )
 
     tensorboard_callback = tf.keras.callbacks.TensorBoard(
