@@ -79,24 +79,20 @@ def create_model(
     loss,
     num_classes,
 ):
-    model = Sequential()
-    model.add(Conv2D(conv1_size, (5, 5), activation=conv_activation,
-                     input_shape=(img_width, img_height, 1)))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(conv2_size, (5, 5), activation=conv_activation))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(dropout))
-    model.add(Flatten())
-    model.add(Dense(hidden1_size, activation=dense_activation))
-    model.add(Dense(num_classes, activation='softmax'))
-
-    model.compile(
-        optimizer=OPTIMIZERS[optimizer](learning_rate=learning_rate),
-        loss=loss,
-        metrics=['accuracy'],
-    )
-
-    return model
+	model = Sequential()
+	model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(200, 200, 3)))
+	model.add(MaxPooling2D((2, 2)))
+	model.add(Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same'))
+	model.add(MaxPooling2D((2, 2)))
+	model.add(Conv2D(128, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same'))
+	model.add(MaxPooling2D((2, 2)))
+	model.add(Flatten())
+	model.add(Dense(128, activation='relu', kernel_initializer='he_uniform'))
+	model.add(Dense(1, activation='sigmoid'))
+	# compile model
+	opt = optimizers.SGD(lr=0.001, momentum=0.9)
+	model.compile(optimizer=opt, loss='binary_crossentropy', metrics=['accuracy'])
+	return model
 
 
 if __name__ == '__main__':
@@ -161,19 +157,9 @@ if __name__ == '__main__':
     labels = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
               "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
-    X_train = X_train.astype('float32')
-    X_train /= 255.
-    X_test = X_test.astype('float32')
-    X_test /= 255.
+    photos = photos.astype('float32')
+    photos /= 255.
 
-    # reshape input data
-    X_train = X_train.reshape(X_train.shape[0], img_width, img_height, 1)
-    X_test = X_test.reshape(X_test.shape[0], img_width, img_height, 1)
-
-    # one hot encode outputs
-    y_train = keras.utils.to_categorical(y_train)
-    y_test = keras.utils.to_categorical(y_test)
-    num_classes = y_test.shape[1]
 
     # Polyaxon
     tracking.init()
@@ -203,8 +189,8 @@ if __name__ == '__main__':
         update_freq=100
     )
 
-    model.fit(x=X_train,
-              y=y_train,
+    model.fit(x=photos,
+              y=labels,
               epochs=args.epochs,
               validation_data=(X_test, y_test),
               callbacks=[tensorboard_callback, plx_callback, plx_model_callback])
