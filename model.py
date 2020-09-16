@@ -149,13 +149,8 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    img_width, img_height = 28, 28
 
     # Data
-    (X_train, y_train), (X_test, y_test) = fashion_mnist.load_data()
-    labels = ["T-shirt/top", "Trouser", "Pullover", "Dress", "Coat",
-              "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
-
     photos = photos.astype('float32')
     photos /= 255.
 
