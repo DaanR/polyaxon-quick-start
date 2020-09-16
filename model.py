@@ -60,6 +60,20 @@ for file in listdir(folder):
 	# store
 	photos.append(photo)
 	labels.append(output)
+	
+folder = 'kaggle_bee_vs_wasp/wasp1/'
+# enumerate files in the directory
+for file in listdir(folder):
+	# determine class
+	output = 0.0
+	# load image
+	photo = load_img(folder + file, target_size=(200, 200))
+	# convert to numpy array
+	photo = img_to_array(photo)
+	# store
+	photos.append(photo)
+	labels.append(output)
+	
 # convert to a numpy arrays
 photos = np.asarray(photos)
 labels = np.asarray(labels)

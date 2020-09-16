@@ -2,6 +2,6 @@ version: 1.1
 kind: operation
 params:
   optimizer: {value: sgd}
-  epochs: {value: 1}
+  epochs: {value: 3}
   dataset1: {value: {dirs: ["/data/kaggle_bee_vs_wasp/bee1/"], init: True}}
 pathRef: "typed.yml"
