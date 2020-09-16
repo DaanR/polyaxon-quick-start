@@ -5,8 +5,6 @@ description: experiment with inputs
 tags: [examples]
 
 inputs:
-inputs:
-- {name: dataset1, type: artifacts}
 - {name: conv1_size, type: int, value: 32, isOptional: true}
 - {name: conv2_size, type: int, value: 64, isOptional: true}
 - {name: dropout, type: float, value: 0.2, isOptional: true}
@@ -21,7 +19,7 @@ outputs:
 - {name: validation, type: float}
 
 run:
-  kind: job
+  kind: tfjob
   init:
   - git: {url: "https://github.com/DaanR/polyaxon-quick-start"}
   container:
