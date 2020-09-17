@@ -101,7 +101,7 @@ def create_model(
 		model.add(MaxPooling2D((2, 2)))
 	
 	model.add(Flatten())
-	model.add(Dropout(dropout)
+	model.add(Dropout(dropout))
 	model.add(Dense(128, activation='relu', kernel_initializer='he_uniform'))
 	model.add(Dense(1, activation='sigmoid'))
 	# compile model
