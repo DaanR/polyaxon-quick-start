@@ -13,20 +13,20 @@ inputs:
 - {name: dense_activation, type: str, value: relu, isOptional: true}
 - {name: optimizer, type: str, value: adam, isOptional: true}
 - {name: learning_rate, type: float, value: 0.001, isOptional: true}
-- {name: epochs, type: int}
+- {name: epochs, type: int, value: 3, isOptional: true}
 outputs:
 - {name: loss, type: float}
 - {name: validation, type: float}
-
 run:
-  kind: job
-  init:
-  - git: {url: "https://github.com/DaanR/polyaxon-quick-start"}
-  container:
-    image: polyaxon/polyaxon-quick-start
-    workingDir: "{{ globals.artifacts_path }}/polyaxon-quick-start"
-    command: [python3, model.py]
-    args: [
+  kind: tfjob
+  chief:
+    init:
+    - git: {url: "https://github.com/DaanR/polyaxon-quick-start"}
+    container:
+      image: polyaxon/polyaxon-quick-start
+      workingDir: "{{ globals.artifacts_path }}/polyaxon-quick-start"
+      command: [python3, model.py]
+      args: [
       "--conv1_size={{ conv1_size }}",
       "--conv2_size={{ conv2_size }}",
       "--dropout={{ dropout }}",
@@ -36,4 +36,13 @@ run:
       "--dense_activation={{ dense_activation }}",
       "--learning_rate={{ learning_rate }}",
       "--epochs={{ epochs }}"
-    ]
+      ]
+  worker:
+    replicas: 2
+    environment:
+      restartPolicy: OnFailure
+    container:
+      image: polyaxon/polyaxon-quick-start
+      resources:
+        limits:
+          nvidia.com/gpu: 1

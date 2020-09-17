@@ -95,15 +95,17 @@ def create_model(
 	model = Sequential()
 	model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same', input_shape=(200, 200, 3)))
 	model.add(MaxPooling2D((2, 2)))
-	model.add(Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same'))
-	model.add(MaxPooling2D((2, 2)))
-	model.add(Conv2D(128, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same'))
-	model.add(MaxPooling2D((2, 2)))
+	
+	for idx in range(2, hidden1_size+1):
+		model.add(Conv2D(32*idx, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same'))
+		model.add(MaxPooling2D((2, 2)))
+	
 	model.add(Flatten())
+	model.add(Dropout(dropout)
 	model.add(Dense(128, activation='relu', kernel_initializer='he_uniform'))
 	model.add(Dense(1, activation='sigmoid'))
 	# compile model
-	opt = optimizers.SGD(lr=0.001, momentum=0.9)
+	opt = optimizers.SGD(lr=learning_rate, momentum=0.9)
 	model.compile(optimizer=opt, loss='binary_crossentropy', metrics=['accuracy'])
 	return model
 
