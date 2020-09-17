@@ -95,7 +95,7 @@ def create_model(
 	model = Sequential()
 	model.add(Conv2D(conv1_size, (3, 3), activation=conv_activation, kernel_initializer='he_uniform', padding='same', input_shape=(200, 200, 3)))
 	model.add(MaxPooling2D((2, 2)))
-	model.add(Conv2D(conv1_size,, (3, 3), activation=conv_activation, kernel_initializer='he_uniform', padding='same'))
+	model.add(Conv2D(conv1_size, (3, 3), activation=conv_activation, kernel_initializer='he_uniform', padding='same'))
 	model.add(MaxPooling2D((2, 2)))
 	
 	model.add(Flatten())
